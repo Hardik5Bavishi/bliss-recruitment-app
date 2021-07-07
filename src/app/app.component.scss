@@ -1,0 +1,39 @@
+.container {
+    margin-top: 100px !important
+}
+
+h3 {
+    color: #9E9E9E;
+    font-size: calc(20px + 6 * ((100vw - 320px) / 680))
+}
+
+button:focus {
+    box-shadow: none !important;
+    outline-width: 0
+}
+
+.card {
+    border-radius: 0;
+    width: calc(475px + 10 * ((100vw - 320px) / 680));
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8)
+}
+
+.card-header {
+    background-color: #ad1308 !important;
+    color: #fff
+}
+
+img {
+    width: 180px !important
+}
+
+.inner li {
+    list-style-type: disc !important
+}
+
+
+@media (max-width: 654px) {
+    .card {
+        width: unset
+    }
+}

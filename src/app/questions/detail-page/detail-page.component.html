@@ -1,0 +1,100 @@
+<!-- sub header -->
+<div class="container d-flex align-items-center justify-content-between mt-5 mb-2">
+    <h2>Details</h2>
+    <button class="btn btn-primary" (click)="back()"><i class="zmdi zmdi-arrow-left text-white mr-4-p"></i>Back</button>
+</div>
+<!-- sub header -->
+
+<div *ngIf="isInProgress; else loaded" class="loading-container">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+
+<ng-template #loaded>
+    <div class="container mb-5">
+        <div class="row">
+            <!-- side bar -->
+            <div class="col-md-4">
+                <div class="p-4 shadow">
+                    <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center">
+                            <i class="user-avtar mr-1 flex-0-0-auto">
+                                <img [src]="questionDetails.thumb_url" alt="thumbnail">
+                            </i>
+                        </div>
+                        <div>
+                            <h2 class="text-dark m-0">Question - {{questionId}}</h2>
+                            <span class="text-gray">{{questionDetails.published_at | date:'medium'}}</span>
+                        </div>
+                    </div>
+                    <!-- banner -->
+                    <div class="banner mt-4">
+                        <img [src]="questionDetails.image_url" alt="image">
+                    </div>
+                </div>
+            </div>
+
+            <!-- qustion & options -->
+            <div class="col-md-8">
+                <div class="p-4 shadow min-h-500">
+                    <div>
+                        <h1> {{questionDetails.question}}</h1>
+                    </div>
+                    <div class="mt-4">
+                        <div class="form-check p-3 bg-light" *ngFor="let data of questionDetails.choices">
+                            <input class="form-check-input h6" type="radio" name="exampleRadios" [id]="data.choice"
+                                [value]="data.choice" [(ngModel)]="answer">
+                            <label class="form-check-label h6" [for]="data.choice">
+                                {{data.choice}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Start Actions -->
+                <div class="d-flex justify-content-between mt-3">
+                    <button class="btn btn-secondary w-100px mr-half" (click)="openDialog()">Share</button>
+                    <button class="btn btn-primary w-100px mr-half" (click)="submit()" [disabled]="!answer">Submit</button>
+                </div>
+                <!-- End Actions -->
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+<!-- <div class="container">
+    <div *ngIf="isInProgress; else loaded" class="loading-container">
+        <mat-spinner [diameter]="40"></mat-spinner>
+    </div>
+    <ng-template #loaded>
+        <mat-card class="example-card">
+            <mat-card-header>
+                <img mat-card-avatar [src]="questionDetails.thumb_url" alt="Photo of a Shiba Inu">
+                <mat-card-title>Question Details</mat-card-title>
+                <mat-card-subtitle>{{questionDetails.published_at | date:'medium'}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image [src]="questionDetails.image_url" alt="Photo of a Shiba Inu">
+            <mat-card-content>
+                <div class="question-label">
+                    {{questionDetails.question}}
+                </div>
+                <div>
+                    <mat-radio-group aria-labelledby="radio-group-label" [(ngModel)]="answer" class="radio-group">
+                        <mat-radio-button class="radio-button" *ngFor="let data of questionDetails.choices"
+                            [value]="data.choice">
+                            {{data.choice}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </mat-card-content>
+            <mat-card-actions class="header-details">
+                <button mat-flat-button color="primary" class="mr-1" (click)="submit()">SUBMIT</button>
+                <button mat-flat-button color="primary" class="mr-1" (click)="openDialog()">SHARE</button>
+                <button mat-flat-button color="primary" (click)="back()">BACK</button>
+            </mat-card-actions>
+        </mat-card>
+    </ng-template>
+</div> -->

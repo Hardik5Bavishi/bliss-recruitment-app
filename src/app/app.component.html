@@ -1,0 +1,43 @@
+<!-- No Internet Connetion Section -->
+<div *ngIf="!isOnline; else online" class="container my-5 d-flex justify-content-center">
+    <div class="justify-content-center ">
+        <div class="card ">
+            <div class="card-header pb-0 bg-white border-0 text-center px-sm-4">
+                <h6 class="text-left mt-4 font-weight-bold"><span><i class="zmdi zmdi-wifi-off fa-2x mr-3 "
+                            aria-hidden="true"></i> </span> No internet connection</h6> <span
+                    class="img-1 text-center"><img src="/assets/no-internet.png" class="img-fluid my-4 " /></span>
+            </div>
+            <div class="card-body px-sm-4 mb-3">
+                <ul class="list-unstyled text-muted">
+                    <li>If you encounter problems:</li>
+                    <ul class="mt-2 inner">
+                        <li>Checking the network cables, modem, and router.</li>
+                        <li>Reconnecting to Wi-Fi.</li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- No Internet Connetion Section -->
+
+<ng-template #online>
+    <!-- header -->
+    <header class="bg-primary h-80 d-flex align-items-center justify-content-between p-4">
+        <div class="logo">
+            Bliss Recruitment App
+        </div>
+        <div>
+            <i class="zmdi zmdi-power cursor-pointer"></i>
+        </div>
+    </header>
+    <!-- end header -->
+    <div class="min-h-500">
+        <router-outlet></router-outlet>
+    </div>
+    <!-- footer -->
+    <footer class="p-4 text-center bg-dark mt-5 text-white">
+        <p>Copyrights&copy;Bliss Recruitment App 2021</p>
+    </footer>
+    <!-- footer -->
+</ng-template>

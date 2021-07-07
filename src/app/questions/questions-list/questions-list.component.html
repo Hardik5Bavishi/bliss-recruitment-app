@@ -1,0 +1,64 @@
+<!-- filter -->
+<div class="container mt-5 mb-3 d-flex">
+    <input class="form-control form-control-lg mr-half w-100 f-16" [(ngModel)]="searchQuery" type="text"
+        placeholder="Search" aria-label=".form-control-lg example" #searchInput>
+    <button  class="btn btn-primary mr-half w-100px cursor-pointer" (click)="loadQuestions()">Serach</button>
+    <button type="reset" class="btn btn-secondary w-100px cursor-pointer" (click)="resetFilter()">Reset</button>
+</div>
+<!-- filter -->
+
+<!-- table -->
+<div class="container">
+    <div class="py-3">
+        <div class="mx-auto bg-white rounded shadow">
+            <!-- Fixed header table-->
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="heading-big">ID</th>
+                            <th scope="col" class="heading-big">Thumbnail</th>
+                            <th scope="col" class="heading-big">Question</th>
+                            <th scope="col" class="heading-big">Published At</th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+
+                        <div *ngIf="isInProgress; else loaded" class="loading-container">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+
+                        <!-- loop -->
+                        <ng-template #loaded>
+                            <tr *ngFor="let data of dataSource" [routerLink]="['/questions/', data.id]"
+                                class="cursor-pointer">
+                                <td>{{data.id}}</td>
+                                <th scope="row">
+                                    <div class="d-flex align-items-center">
+                                        <i class="user-avtar mr-1 flex-0-0-auto">
+                                            <img [src]="data.thumb_url" alt="">
+                                        </i>
+                                    </div>
+                                </th>
+                                <td>{{data.question}}</td>
+                                <td>{{data.published_at | date:'medium'}}</td>
+                            </tr>
+                            <!-- loop -->
+                        </ng-template>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Start Pagination -->
+        <div class="mt-3 d-flex justify-content-end">
+            <button class="btn btn-primary" [disabled]="isInProgress" (click)="loadMoreData()">load 10 more data</button>
+        </div>
+        <!-- End Pagination -->
+    </div>
+</div>
+<!-- End Table -->
